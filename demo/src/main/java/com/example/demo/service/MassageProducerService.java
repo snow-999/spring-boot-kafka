@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dto.CustomMessage;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,4 +16,9 @@ public class MassageProducerService {
         kafkaTemplate.send("my-topic", message);
     }
 
+
+    @Scheduled(fixedRate = 1000)
+    public void send() {
+        sendMessage("send message to kafka");
+    }
 }
